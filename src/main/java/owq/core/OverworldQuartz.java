@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -18,6 +19,7 @@ public class OverworldQuartz
 	@Instance("overworld-quartz")
 	private static OverworldQuartz instance;
 	private Logger logger;
+	private Configuration config;
 	
 	public static Block blockQuartz;
 	
@@ -26,12 +28,16 @@ public class OverworldQuartz
 	{
 		instance = this;
 		logger = event.getModLog();
+		config = new Configuration(event.getSuggestedConfigurationFile());
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		blockQuartz = new BlockOverworldQuartz(3231);
+		int id = config.get("Init", "overworldQuartzID", 3527).getInt();
+		config.save();
+		
+		blockQuartz = new BlockOverworldQuartz(id);
 
 		SimpleOreGenerator.register(new SimpleOreGenerator(blockQuartz, 8, 1, 63, true, false), 1);
 		GameRegistry.addSmelting(blockQuartz.blockID, new ItemStack(Item.netherQuartz), 0.2F);
