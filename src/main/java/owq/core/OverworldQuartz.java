@@ -20,10 +20,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class OverworldQuartz
 {
 	@Instance("overworld-quartz")
-	private OverworldQuartz instance;
+	private static OverworldQuartz instance;
 	private Logger logger;
 	
-	private Block blockQuartz;
+	private static Block blockQuartz;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -35,15 +35,13 @@ public class OverworldQuartz
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		blockQuartz = (new BlockOre()).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundTypePiston).setBlockName("overworldquartz").setBlockTextureName("overworld-quartz:overworldquartz");
-		GameRegistry.registerBlock(blockQuartz, "overworldquartz");
-		blockQuartz.setCreativeTab(CreativeTabs.tabBlock);
-		blockQuartz.setHarvestLevel("pickaxe", 1);
-		SimpleOreGenerator.register(new SimpleOreGenerator(blockQuartz, 8, 1, 63, true, false), 2);
+		blockQuartz = new BlockOverworldQuartz();
+
+		SimpleOreGenerator.register(new SimpleOreGenerator(blockQuartz, 8, 1, 63, true, false), 1);
 		GameRegistry.addSmelting(blockQuartz, new ItemStack(Items.quartz), 0.2F);
 	}
 	
-	public OverworldQuartz getInstance()
+	public static OverworldQuartz getInstance()
 	{
 		return instance;
 	}
