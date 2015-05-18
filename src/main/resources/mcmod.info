@@ -1,0 +1,16 @@
+[
+{
+  "modid": "overworld-quartz",
+  "name": "Overworld Quartz",
+  "description": "Gather quartz from the overworld! Who needs the Nether? Not you!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.radix-shock.com/owq--download.html",
+  "updateUrl": "asp.radix-shock.com",
+  "authorList": ["WildBamaBoy", "SheWolfDeadly", "Ashleyosity"],
+  "credits": "",
+  "logoFile": "overworld-quartz.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
