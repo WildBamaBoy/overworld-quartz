@@ -1,6 +1,5 @@
 minecraft {
-    version = "1.7.10-10.13.2.1291"
-    runDir =  "eclipse/"
+    version = "1.6.4-9.11.1.964"
     replaceIn "owq/core/OverworldQuartz.java"
     replace   "@VERSION@", project.version
 }

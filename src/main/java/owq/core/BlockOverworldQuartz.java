@@ -2,31 +2,32 @@ package owq.core;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockOverworldQuartz extends BlockOre
 {
-	public BlockOverworldQuartz()
+	public BlockOverworldQuartz(int id)
 	{
+		super(id);
+		
 		setHardness(3.0F);
 		setResistance(5.0F);
-		setStepSound(soundTypePiston);
-		setBlockName("overworldquartz");
-		setBlockTextureName("overworld-quartz:overworldquartz");
-		setHarvestLevel("pickaxe", 1);
-		
+		setStepSound(soundStoneFootstep);
+		setUnlocalizedName("overworldquartz");
+		setTextureName("overworld-quartz:overworldquartz");
+
 		GameRegistry.registerBlock(this, "overworldquartz");
+		MinecraftForge.setBlockHarvestLevel(this, "pickaxe", 1);
 		setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@Override
-	public Item getItemDropped(int unknown, Random random, int unknown1) 
+	public int idDropped(int unknown, Random random, int unknown1) 
 	{
-		return Items.quartz;
+		return Item.netherQuartz.itemID;
 	}
 }
