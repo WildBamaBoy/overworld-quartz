@@ -1,0 +1,23 @@
+minecraft {
+    version = "1.8-11.14.1.1334"
+    runDir =  "eclipse/"
+    replaceIn "owq/core/OverworldQuartz.java"
+    replace   "@VERSION@", project.version
+}
+
+version = "${project.version}"
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
