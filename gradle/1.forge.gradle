@@ -1,6 +1,7 @@
 minecraft {
-    version = "1.8-11.14.1.1334"
-    runDir =  "eclipse/"
+    version = "1.8.9-11.15.1.1722"
+    runDir =  "run"
+	mappings = "stable_20"
     replaceIn "owq/core/OverworldQuartz.java"
     replace   "@VERSION@", project.version
 }
