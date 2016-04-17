@@ -3,10 +3,11 @@ package owq.core;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.pattern.BlockHelper;
+import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -31,9 +32,10 @@ public final class SimpleOreGenerator implements IWorldGenerator
 		this.canSpawnInNether = canSpawnInNether;
 	}
 	
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
 	{
-		switch (world.provider.getDimensionId())
+		switch (world.provider.getDimension())
 		{
 		case -1:
 			generateNether(world, random, chunkX * 16, chunkZ * 16);;
@@ -59,7 +61,7 @@ public final class SimpleOreGenerator implements IWorldGenerator
 			int xPos = x + random.nextInt(16);
 			int yPos = 10 + random.nextInt(128);
 			int zPos = z + random.nextInt(16);
-			(new WorldGenMinable(spawnBlock.getDefaultState(), 15, BlockHelper.forBlock(Blocks.netherrack))).generate(world, random, new BlockPos(xPos, yPos, zPos));
+			(new WorldGenMinable(spawnBlock.getDefaultState(), 15, BlockMatcher.forBlock(Blocks.netherrack))).generate(world, random, new BlockPos(xPos, yPos, zPos));
 		}
 	}
 
